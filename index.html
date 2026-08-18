@@ -159,17 +159,17 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 .console-head h2{color:#fff;font-size:15.5px;text-transform:uppercase;letter-spacing:.04em;}
 .console-head span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(255,255,255,.55);}
 .slider-group{position:relative;display:flex;flex-direction:column;gap:7px;}
-.slider-label{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);}
+.slider-label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.95);}
 .slider-label .val{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;color:var(--lamp);}
-.slider-track-wrap{position:relative;padding-top:4px;}
-.slider-track-wrap input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:4px;background:rgba(255,255,255,.18);outline-offset:6px;}
-.slider-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);margin-top:-6px;}
+.slider-track-wrap{position:relative;padding:8px 0 26px;}
+.slider-track-wrap input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:4px;background:rgba(255,255,255,.26);outline-offset:6px;}
+.slider-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);margin-top:-5.5px;}
 .slider-track-wrap input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);}
-.threshold-mark{position:absolute;top:4px;width:2px;height:6px;background:var(--red);}
-.threshold-mark::after{content:attr(data-label);position:absolute;top:9px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,150,140,.9);white-space:nowrap;}
-.threshold-mark.row2{height:14px;}
-.threshold-mark.row2::after{top:17px;}
-.slider-track-wrap.has-2row{padding-bottom:22px;}
+.threshold-mark{position:absolute;top:21px;width:2px;height:9px;background:#FF8A80;border-radius:1px;}
+.threshold-mark::after{content:attr(data-label);position:absolute;top:11px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:#FFB8B2;white-space:nowrap;}
+.threshold-mark.row2{height:22px;}
+.threshold-mark.row2::after{top:24px;}
+.slider-track-wrap.has-2row{padding-bottom:44px;}
 .console-lamps{position:relative;display:flex;gap:8px;margin-top:2px;}
 .console-lamp{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 6px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);transition:background .2s ease,border-color .2s ease;}
 .console-lamp .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);}
@@ -446,10 +446,10 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       <stop offset="100%" stop-color="#CE8712"/>
     </linearGradient>
     <radialGradient id="heatG" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFDE59" stop-opacity="0.92"/>
-      <stop offset="42%" stop-color="#F0A22E" stop-opacity="0.52"/>
-      <stop offset="74%" stop-color="#E0342A" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#E0342A" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#FFC93C" stop-opacity="0.66"/>
+      <stop offset="40%" stop-color="#EC8B21" stop-opacity="0.4"/>
+      <stop offset="72%" stop-color="#D93A26" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#D93A26" stop-opacity="0"/>
     </radialGradient>
     <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
   </defs>
@@ -513,7 +513,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     <g fill="#2A3038"><rect x="58" y="340" width="12" height="10" rx="2"/><rect x="290" y="340" width="12" height="10" rx="2"/></g>
   </g>
 
-  <circle id="heatCircle" cx="396" cy="312" r="130" fill="url(#heatG)" filter="url(#blurSoft)"/>
+  <circle id="heatCircle" cx="342" cy="316" r="112" fill="url(#heatG)" filter="url(#blurSoft)"/>
 
   <g fill="#3A4048" opacity="0.32">
     <circle cx="330" cy="264" r="3.4"/><circle cx="366" cy="242" r="2.8"/><circle cx="298" cy="236" r="2.4"/><circle cx="410" cy="254" r="3"/><circle cx="448" cy="234" r="2.4"/><circle cx="352" cy="286" r="2.6"/>
@@ -695,7 +695,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           <div class="slider-label"><span>Kecepatan Angin</span><span class="val mono"><span id="windVal">6</span> kt</span></div>
           <div class="slider-track-wrap">
             <input type="range" id="windSlider" min="0" max="25" value="6" step="1" aria-label="Kecepatan angin dalam knot">
-            <span class="threshold-mark" style="left:60%;" data-label="15 kt · limit"></span>
+            <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="15 kt · batas"></span>
           </div>
         </div>
 
@@ -703,8 +703,8 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           <div class="slider-label"><span>Kadar PM10</span><span class="val mono"><span id="pmVal">28</span> µg/Nm³</span></div>
           <div class="slider-track-wrap has-2row">
             <input type="range" id="pmSlider" min="0" max="100" value="28" step="1" aria-label="Kadar PM10 dalam mikrogram per Nm3">
-            <span class="threshold-mark" style="left:60%;" data-label="60 toleransi"></span>
-            <span class="threshold-mark row2" style="left:75%;" data-label="75 NAB"></span>
+            <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="60 · toleransi"></span>
+            <span class="threshold-mark row2" style="left:calc(9px + (100% - 18px) * 0.75);" data-label="75 · NAB"></span>
           </div>
         </div>
 
@@ -1305,9 +1305,9 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     windNeedle.querySelector('path').setAttribute('fill', wind > 15 ? '#DE0603' : '#0D3F78');
 
     // heat glow reacts to pm10
-    var r = 70 + (pm/100)*90;
+    var r = 58 + (pm/100)*68;
     heatCircle.setAttribute('r', String(r));
-    heatCircle.style.opacity = String(0.42 + (pm/100)*0.5);
+    heatCircle.style.opacity = String(0.34 + (pm/100)*0.38);
 
     var windStop = wind > 15;
     var pmStop = pm > 75;
