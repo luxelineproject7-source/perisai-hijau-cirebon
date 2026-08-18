@@ -70,13 +70,14 @@
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
+  margin:0;color:var(--ink);
   font-family:'Work Sans',sans-serif;font-size:16px;line-height:1.62;
   -webkit-font-smoothing:antialiased;
-  background-image:
-    linear-gradient(90deg, color-mix(in srgb, var(--navy) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(0deg, color-mix(in srgb, var(--navy) 6%, transparent) 1px, transparent 1px);
-  background-size:36px 36px;
+  background:
+    radial-gradient(1100px 620px at 12% -8%, color-mix(in srgb, var(--water) 10%, transparent), transparent 60%),
+    radial-gradient(900px 520px at 100% 15%, color-mix(in srgb, var(--green) 6%, transparent), transparent 58%),
+    var(--bg);
+  background-attachment:fixed;
 }
 h1,h2,h3,h4{font-family:'Baloo 2',sans-serif;margin:0;color:var(--navy-text);text-wrap:balance;}
 .mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;}
