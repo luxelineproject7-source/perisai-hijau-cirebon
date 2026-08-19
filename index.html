@@ -302,6 +302,23 @@ section{padding:58px 0;}
 .apd-icon svg{width:14px;height:14px;}
 
 /* ---------- hierarchy funnel ---------- */
+.ambang-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;box-shadow:0 4px 14px var(--shadow);margin-bottom:26px;}
+.ambang-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.ambang-head h3{font-size:14px;text-transform:uppercase;letter-spacing:.03em;color:var(--navy-text);}
+.ambang-mnemonic{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-dim);}
+.ambang-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:28px;align-items:center;margin-top:16px;}
+@media (max-width:880px){.ambang-grid{grid-template-columns:1fr;gap:22px;}}
+.ambang-table-wrap{overflow-x:auto;}
+.ambang-table{width:100%;min-width:340px;border-collapse:collapse;font-size:12.5px;}
+.ambang-table th{text-align:center;background:var(--navy);color:#fff;font-family:'Baloo 2',sans-serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;}
+.ambang-table td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink);line-height:1.5;}
+.ambang-table tr.val td:first-child{font-weight:700;color:var(--navy-text);white-space:nowrap;}
+.ambang-table tr.val td:last-child{font-family:'IBM Plex Mono',monospace;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.ambang-table tr.basis td{background:var(--panel-2);font-size:11.5px;color:var(--ink-dim);}
+.ambang-table tr.basis td:first-child{font-style:italic;white-space:nowrap;}
+.ambang-rings{display:flex;justify-content:center;}
+.ambang-rings svg{width:100%;max-width:290px;height:auto;}
+.ambang-src{margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--ink-dim);font-style:italic;line-height:1.55;}
 .funnel{display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
 .funnel-row{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left;}
 .funnel-label{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;text-align:right;}
@@ -1024,6 +1041,43 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 
   <section id="ambang">
     <div class="sec-bar" data-reveal><h2>4. Arsitektur &amp; Ambang Batas Risiko</h2><span class="tag">Capacity → Tolerance → Appetite → Limit</span></div>
+
+    <div class="ambang-card" data-reveal>
+      <div class="ambang-head">
+        <h3>Ambang Batas Risiko</h3>
+        <span class="ambang-mnemonic">Risk Capacity &gt; Risk Tolerance &gt; Risk Appetite &gt; Risk Limit (Ca-tor Appe-l)</span>
+      </div>
+      <div class="ambang-grid">
+        <div class="ambang-table-wrap">
+          <table class="ambang-table">
+            <thead><tr><th colspan="2">Ambang Batas Risiko</th></tr></thead>
+            <tbody>
+              <tr class="val"><td>Nilai <i>risk capacity</i></td><td>IDR 56.471.009.585,-</td></tr>
+              <tr class="basis"><td>Dasar perhitungan</td><td>Net Working Capital (NWC) = Aset lancar (Rp142.143.113.127,-) − Kewajiban lancar (Rp85.672.103.542,-)</td></tr>
+              <tr class="val"><td>Nilai <i>risk appetite</i></td><td>IDR 5.647.100.959,-</td></tr>
+              <tr class="basis"><td>Dasar perhitungan</td><td>Nilai 10% dari NWC</td></tr>
+              <tr class="val"><td>Nilai <i>risk tolerance</i></td><td>IDR 8.470.651.438,-</td></tr>
+              <tr class="basis"><td>Dasar perhitungan</td><td>Nilai 15% dari NWC</td></tr>
+              <tr class="val"><td>Nilai <i>limit</i> risiko</td><td>IDR 2.823.550.479,-</td></tr>
+              <tr class="basis"><td>Dasar perhitungan</td><td>5% dari <i>risk capacity</i> atau kebijakan manajemen</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ambang-rings">
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" font-family="'Work Sans',sans-serif" role="img" aria-label="Diagram lingkaran bersarang: Risk Capacity melingkupi Risk Tolerance, Risk Tolerance melingkupi Risk Appetite, dan Risk Limit berada di pusat">
+            <circle cx="160" cy="160" r="152" fill="#17375E"/>
+            <circle cx="160" cy="160" r="118" fill="#2E8FA0"/>
+            <circle cx="160" cy="160" r="83" fill="#8CC63E"/>
+            <circle cx="160" cy="160" r="52" fill="#EDBE7E"/>
+            <text x="160" y="32" text-anchor="middle" font-size="15.5" font-weight="700" fill="#FFFFFF">Risk Capacity</text>
+            <text x="160" y="65" text-anchor="middle" font-size="15.5" font-weight="700" fill="#FFFFFF">Risk Tolerance</text>
+            <text x="160" y="98" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1C3512">Risk Appetite</text>
+            <text x="160" y="166" text-anchor="middle" font-size="15.5" font-weight="700" fill="#4A2E10">Risk Limit</text>
+          </svg>
+        </div>
+      </div>
+      <p class="ambang-src">Sumber: Risk Management Fundamental Pelindo — Version 1.0 (2025). Angka pada tabel ini adalah ambang batas tingkat korporat yang dihitung dari Net Working Capital. Nilai spesifik untuk risiko debu batu bara Pelabuhan Cirebon ditampilkan pada keempat kartu di bawah.</p>
+    </div>
 
     <div data-reveal>
       <div class="funnel">
