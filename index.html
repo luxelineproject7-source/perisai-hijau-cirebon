@@ -176,7 +176,7 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 .flow-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
 .flow-head h3{font-size:14px;text-transform:uppercase;letter-spacing:.03em;color:var(--navy-text);}
 .flow-head span{font-size:10.5px;color:var(--ink-dim);}
-.flow-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:0;counter-reset:step;}
+.flow-steps{display:grid;grid-template-columns:repeat(8,1fr);gap:0;counter-reset:step;}
 .flow-steps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:0 6px;}
 .flow-steps li::before{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:var(--line);z-index:0;}
 .flow-steps li:last-child::before{display:none;}
@@ -335,6 +335,11 @@ section{padding:58px 0;}
 /* ---------- matrix ---------- */
 .matrix-block{margin-top:34px;margin-bottom:16px;}
 .matrix-scroll{overflow-x:auto;border-radius:10px;box-shadow:0 4px 14px var(--shadow);}
+.matrix-annot{position:relative;}
+.matrix-arrow{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:3;}
+.matrix-badge{position:absolute;z-index:4;background:var(--navy);color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:12px;line-height:1.25;text-align:center;padding:7px 13px;border-radius:6px;box-shadow:0 5px 14px rgba(0,0,0,.32);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .3s ease;}
+.matrix-badge.on{opacity:1;}
+@media (max-width:560px){.matrix-badge{font-size:10.5px;padding:5px 9px;}}
 .matrix{width:100%;min-width:560px;border-collapse:collapse;font-size:12px;background:var(--panel);}
 .matrix th,.matrix td{border:1px solid var(--bg);text-align:center;padding:9px 4px;}
 .matrix thead th{background:var(--navy);color:#fff;font-size:10.5px;padding:7px 3px;}
@@ -915,13 +920,14 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
         <span class="mono">Rantai kendali dari tongkang sampai truk keluar gerbang</span>
       </div>
       <ol class="flow-steps">
-        <li><span class="fs-n">1</span><span class="fs-t">Kegiatan bongkar batu bara</span></li>
-        <li><span class="fs-n">2</span><span class="fs-t">Penutupan bak dengan terpal</span></li>
-        <li><span class="fs-n">3</span><span class="fs-t">Penyapuan debu &amp; penyiraman di dermaga</span></li>
-        <li><span class="fs-n">4</span><span class="fs-t">Penyiraman jalan</span></li>
-        <li><span class="fs-n">5</span><span class="fs-t">Pembersihan truk di carwash</span></li>
-        <li><span class="fs-n">6</span><span class="fs-t">Penyapuan debu di jalan</span></li>
-        <li class="exit"><span class="fs-n">7</span><span class="fs-t">Truk keluar pelabuhan</span></li>
+        <li><span class="fs-n">1</span><span class="fs-t">Penggunaan APD oleh pekerja</span></li>
+        <li><span class="fs-n">2</span><span class="fs-t">Penyemprotan water sprayer</span></li>
+        <li><span class="fs-n">3</span><span class="fs-t">Kegiatan bongkar batu bara</span></li>
+        <li><span class="fs-n">4</span><span class="fs-t">Penutupan bak dengan terpal</span></li>
+        <li><span class="fs-n">5</span><span class="fs-t">Penyapuan debu &amp; penyiraman di dermaga</span></li>
+        <li><span class="fs-n">6</span><span class="fs-t">Pembersihan truk di carwash</span></li>
+        <li><span class="fs-n">7</span><span class="fs-t">Penyapuan debu di jalan</span></li>
+        <li class="exit"><span class="fs-n">8</span><span class="fs-t">Truk keluar pelabuhan</span></li>
       </ol>
       <div class="flow-facts">
         <div class="flow-fact"><b>4</b><span>sprayer per tongkang, ditambah 4 spray gun portable di dermaga — interval 1 jam ON/OFF</span></div>
@@ -1052,14 +1058,14 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           <table class="ambang-table">
             <thead><tr><th colspan="2">Ambang Batas Risiko</th></tr></thead>
             <tbody>
-              <tr class="val"><td>Nilai <i>risk capacity</i></td><td>IDR 56.471.009.585,-</td></tr>
-              <tr class="basis"><td>Dasar perhitungan</td><td>Net Working Capital (NWC) = Aset lancar (Rp142.143.113.127,-) − Kewajiban lancar (Rp85.672.103.542,-)</td></tr>
-              <tr class="val"><td>Nilai <i>risk appetite</i></td><td>IDR 5.647.100.959,-</td></tr>
-              <tr class="basis"><td>Dasar perhitungan</td><td>Nilai 10% dari NWC</td></tr>
-              <tr class="val"><td>Nilai <i>risk tolerance</i></td><td>IDR 8.470.651.438,-</td></tr>
-              <tr class="basis"><td>Dasar perhitungan</td><td>Nilai 15% dari NWC</td></tr>
-              <tr class="val"><td>Nilai <i>limit</i> risiko</td><td>IDR 2.823.550.479,-</td></tr>
-              <tr class="basis"><td>Dasar perhitungan</td><td>5% dari <i>risk capacity</i> atau kebijakan manajemen</td></tr>
+              <tr class="val"><td>Nilai <i>risk capacity</i></td><td>IDR 3,5 miliar / tahun</td></tr>
+              <tr class="basis"><td>Penjelasan</td><td>Kemampuan maksimal pelabuhan menyerap kerugian akibat demo masyarakat dan terhambatnya kegiatan operasional.</td></tr>
+              <tr class="val"><td>Nilai <i>risk tolerance</i></td><td>IDR 2,5 miliar / tahun</td></tr>
+              <tr class="basis"><td>Penjelasan</td><td>Penurunan kecepatan bongkar muat (TGH) akibat penghentian sementara saat terjadi demo yang masih bisa ditoleransi.</td></tr>
+              <tr class="val"><td>Nilai <i>risk appetite</i></td><td>IDR 1,3 miliar / tahun</td></tr>
+              <tr class="basis"><td>Penjelasan</td><td>Perusahaan bersedia mengambil risiko dalam mengelola curah kering batu bara dengan nilai risiko yang dapat diterima.</td></tr>
+              <tr class="val"><td>Nilai <i>limit</i> risiko</td><td>IDR 1 miliar / tahun</td></tr>
+              <tr class="basis"><td>Penjelasan</td><td>Terdapat kerumunan massa yang memblokir gerbang pelabuhan dengan maksimal risiko yang dapat diterima.</td></tr>
             </tbody>
           </table>
         </div>
@@ -1076,7 +1082,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           </svg>
         </div>
       </div>
-      <p class="ambang-src">Sumber: Risk Management Fundamental Pelindo — Version 1.0 (2025). Angka pada tabel ini adalah ambang batas tingkat korporat yang dihitung dari Net Working Capital. Nilai spesifik untuk risiko debu batu bara Pelabuhan Cirebon ditampilkan pada keempat kartu di bawah.</p>
+      <p class="ambang-src">Sumber: Poster Manajemen Risiko Debu Batu Bara — Pelabuhan Cirebon 2026. Kerangka Capacity &gt; Tolerance &gt; Appetite &gt; Limit mengikuti Risk Management Fundamental Pelindo v1.0. Rincian parameter tiap ambang dijabarkan pada keempat kartu di bawah.</p>
     </div>
 
     <div data-reveal>
@@ -1153,6 +1159,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     </div>
     <div class="matrix-block" data-reveal>
       <div class="matrix-scroll">
+        <div class="matrix-annot">
         <table class="matrix">
           <thead><tr><th colspan="2"></th><th colspan="5">Tingkat Dampak</th></tr></thead>
           <tbody>
@@ -1161,6 +1168,9 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
               <td class="impact-head">1<br>Sangat Rendah</td><td class="impact-head">2<br>Rendah</td><td class="impact-head">3<br>Moderat</td><td class="impact-head">4<br>Tinggi</td><td class="impact-head">5<br>Sangat Tinggi</td></tr>
           </tbody>
         </table>
+        <svg class="matrix-arrow" id="matrixArrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+        <span class="matrix-badge" id="matrixBadge" aria-hidden="true">Dampak risiko turun dari 21 ke 10</span>
+        </div>
       </div>
       <div class="matrix-readout" id="matrixReadout">Ketuk salah satu sel matriks untuk melihat rincian skor risikonya. Sel bertanda <span class="pin">1</span> dan <span class="pin">2</span> menunjukkan pergerakan skor akibat mitigasi.</div>
       <div class="matrix-legend" aria-hidden="true">
@@ -1567,6 +1577,54 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       document.querySelector('.qr-visual').innerHTML = '<span style="color:#fff;font-size:12px;text-align:center;">QR tidak tersedia di pratinjau ini — tautan tetap bisa disalin.</span>';
     }
   }
+  // panah anotasi pada matriks: dari sel skor 21 (inherent) ke sel skor 10 (residual)
+  function drawMatrixArrow(){
+    var wrap = document.querySelector('.matrix-annot');
+    var svg = document.getElementById('matrixArrow');
+    var badge = document.getElementById('matrixBadge');
+    var from = document.querySelector('.matrix td.cell[data-marker="before"]');
+    var to = document.querySelector('.matrix td.cell[data-marker="after"]');
+    if(!wrap || !svg || !badge || !from || !to) return;
+
+    var wr = wrap.getBoundingClientRect();
+    if(wr.width < 10) return;
+    var f = from.getBoundingClientRect(), t = to.getBoundingClientRect();
+
+    svg.setAttribute('viewBox', '0 0 ' + wr.width + ' ' + wr.height);
+
+    // mulai dari tepi kiri sel 21, berakhir di tepi kanan sel 10
+    var x1 = f.left - wr.left + f.width * 0.12;
+    var y1 = f.top - wr.top + f.height * 0.5;
+    var x2 = t.left - wr.left + t.width * 0.94;
+    var y2 = t.top - wr.top + t.height * 0.5;
+    var cx = (x1 + x2) / 2;
+    var cy = Math.min(y1, y2) - Math.abs(x1 - x2) * 0.10;
+
+    var ang = Math.atan2(y2 - cy, x2 - cx);
+    var head = 11;
+    var p1x = x2 - head * Math.cos(ang - 0.42), p1y = y2 - head * Math.sin(ang - 0.42);
+    var p2x = x2 - head * Math.cos(ang + 0.42), p2y = y2 - head * Math.sin(ang + 0.42);
+
+    svg.innerHTML =
+      '<path d="M' + x1 + ',' + y1 + ' Q' + cx + ',' + cy + ' ' + x2 + ',' + y2 + '" fill="none" stroke="#0D3F78" stroke-width="4" stroke-linecap="round"/>' +
+      '<polygon points="' + x2 + ',' + y2 + ' ' + p1x + ',' + p1y + ' ' + p2x + ',' + p2y + '" fill="#0D3F78"/>';
+
+    // badge di puncak lengkung
+    var bx = 0.25 * x1 + 0.5 * cx + 0.25 * x2;
+    var by = 0.25 * y1 + 0.5 * cy + 0.25 * y2;
+    badge.style.left = bx + 'px';
+    badge.style.top = by + 'px';
+    badge.style.transform = 'translate(-50%,-140%) rotate(-6deg)';
+    badge.classList.add('on');
+  }
+  drawMatrixArrow();
+  window.addEventListener('resize', drawMatrixArrow);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(drawMatrixArrow); }
+  if('ResizeObserver' in window){
+    var mo = document.querySelector('.matrix-annot');
+    if(mo) new ResizeObserver(drawMatrixArrow).observe(mo);
+  }
+
   renderQR();
   });
 
