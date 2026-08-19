@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perisai Hijau Cirebon</title>
+<!-- Isi content dengan URL publik final (mis. https://perisai-hijau-cirebon.vercel.app)
+     agar kode QR selalu menunjuk ke sana, bukan ke alamat pratinjau yang sedang dibuka.
+     Biarkan kosong untuk memakai alamat halaman saat ini. -->
+<meta name="canonical-url" content="">
 <script>document.documentElement.classList.add('js-anim');</script>
 <style>
 
@@ -41,6 +45,10 @@
   --lvl3:#F5E33C; --lvl3-ink:#3d3400;
   --lvl4:#F0A22E; --lvl4-ink:#3d2400;
   --lvl5:#E0342A; --lvl5-ink:#fff;
+
+  --z-ok:rgba(72,206,138,.55);
+  --z-warn:rgba(255,206,64,.6);
+  --z-stop:rgba(230,84,72,.66);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
@@ -207,9 +215,18 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 .console-head span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(255,255,255,.55);}
 .slider-group{position:relative;display:flex;flex-direction:column;gap:7px;}
 .slider-label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.95);}
-.slider-label .val{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;color:var(--lamp);}
+.slider-label .val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:var(--lamp);transition:color .18s ease;}
+.slider-label .val.s-ok{color:#5FE3A1;}
+.slider-label .val.s-warn{color:#FFD84D;}
+.slider-label .val.s-stop{color:#FF8177;}
 .slider-track-wrap{position:relative;padding:8px 0 26px;}
-.slider-track-wrap input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:4px;background:rgba(255,255,255,.26);outline-offset:6px;}
+.slider-track-wrap input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:9px;border-radius:5px;background:rgba(255,255,255,.22);outline-offset:6px;}
+/* the track itself shows the aman / toleransi / lampaui-batas bands */
+#windSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 40%,var(--z-warn) 40% 60%,var(--z-stop) 60% 100%);}
+#pmSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 60%,var(--z-warn) 60% 75%,var(--z-stop) 75% 100%);}
+.zone-key{display:flex;gap:14px;flex-wrap:wrap;margin-top:2px;}
+.zone-key span{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.72);}
+.zone-key i{width:11px;height:7px;border-radius:2px;display:inline-block;}
 .slider-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);margin-top:-5.5px;}
 .slider-track-wrap input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--navy);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);}
 .threshold-mark{position:absolute;top:21px;width:2px;height:9px;background:#FF8A80;border-radius:1px;}
@@ -764,6 +781,12 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
             <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="60 · toleransi"></span>
             <span class="threshold-mark row2" style="left:calc(9px + (100% - 18px) * 0.75);" data-label="75 · NAB"></span>
           </div>
+        </div>
+
+        <div class="zone-key" aria-hidden="true">
+          <span><i style="background:var(--z-ok)"></i>Aman</span>
+          <span><i style="background:var(--z-warn)"></i>Toleransi</span>
+          <span><i style="background:var(--z-stop)"></i>Lampaui batas</span>
         </div>
 
         <div class="console-lamps">
@@ -1423,6 +1446,10 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       msg = 'Kondisi dalam batas aman — anemometer <b>' + wind + ' kt</b> dan PM10 <b>' + pm + ' µg/Nm³</b> berada di bawah ambang. Bongkar muat berjalan normal; sprayer tongkang, penyiraman jalan 6× sehari, dan penyapuan rutin tetap dijalankan sebagai kendali dasar.';
     }
 
+    // each reading is toned by its own threshold, not the combined state
+    windVal.parentElement.className = 'val mono ' + (windStop ? 's-stop' : (windCaution ? 's-warn' : 's-ok'));
+    pmVal.parentElement.className   = 'val mono ' + (pmStop   ? 's-stop' : (pmCaution   ? 's-warn' : 's-ok'));
+
     setLamp(lampNormal, state === 'normal');
     setLamp(lampSiaga, state === 'siaga');
     setLamp(lampStop, state === 'stop');
@@ -1440,8 +1467,16 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 
   // ---- QR code ----
   safe('qr-code', function(){
+  // Prefer a pinned public URL so a printed QR never points at a preview address.
+  function shareUrl(){
+    var m = document.querySelector('meta[name="canonical-url"]');
+    var pinned = m && m.content ? m.content.trim() : '';
+    if(pinned){ while(pinned.charAt(pinned.length-1) === '/') pinned = pinned.slice(0,-1); return pinned + '/'; }
+    return window.location.origin + window.location.pathname;
+  }
+
   function renderQR(){
-    var url = window.location.href;
+    var url = shareUrl();
     document.getElementById('qrLinkText').textContent = url;
     try {
       var qr = qrcode(0, 'M');
@@ -1475,7 +1510,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
   safe('copy-link', function(){
   var copyBtn = document.getElementById('copyBtn');
   copyBtn.addEventListener('click', function(){
-    var url = window.location.href;
+    var url = shareUrl();
     function done(){
       copyBtn.textContent = 'Tersalin ✓';
       copyBtn.classList.add('done');
