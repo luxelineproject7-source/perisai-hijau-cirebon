@@ -224,7 +224,8 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 /* the track itself shows the aman / toleransi / lampaui-batas bands */
 #windSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 40%,var(--z-warn) 40% 60%,var(--z-stop) 60% 100%);}
 #pmSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 75%,var(--z-stop) 75% 100%);}
-.slider-reg{font-family:'IBM Plex Mono',monospace;font-size:9.5px;line-height:1.5;color:rgba(255,255,255,.62);margin-top:2px;}
+.slider-reg{display:flex;gap:8px;align-items:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.9);margin-top:8px;padding:8px 11px;background:rgba(255,255,255,.08);border-left:3px solid var(--lamp);border-radius:0 6px 6px 0;}
+.slider-reg b{color:var(--lamp);font-weight:700;flex:none;letter-spacing:.04em;}
 .zone-key{display:flex;gap:14px;flex-wrap:wrap;margin-top:2px;}
 .zone-key span{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.72);}
 .zone-key i{width:11px;height:7px;border-radius:2px;display:inline-block;}
@@ -315,7 +316,7 @@ section{padding:58px 0;}
 .funnel-caption .mono{font-style:normal;}
 
 /* ---------- matrix ---------- */
-.matrix-block{margin-bottom:16px;}
+.matrix-block{margin-top:34px;margin-bottom:16px;}
 .matrix-scroll{overflow-x:auto;border-radius:10px;box-shadow:0 4px 14px var(--shadow);}
 .matrix{width:100%;min-width:560px;border-collapse:collapse;font-size:12px;background:var(--panel);}
 .matrix th,.matrix td{border:1px solid var(--bg);text-align:center;padding:9px 4px;}
@@ -739,10 +740,11 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       <text x="766" y="239" fill="#FFFFFF" text-anchor="middle">Truck Wash</text>
     </g>
     <g>
-      <line x1="620" y1="248" x2="608" y2="326" stroke="#0D3F78" stroke-width="1.8"/>
+      <line x1="620" y1="252" x2="608" y2="326" stroke="#0D3F78" stroke-width="1.8"/>
       <circle cx="608" cy="326" r="4" fill="#FFFFFF" stroke="#0D3F78" stroke-width="2"/>
-      <rect x="556" y="222" width="128" height="26" rx="13" fill="#0D3F78"/>
-      <text x="620" y="239" fill="#FFFFFF" text-anchor="middle">Terpal Bak Truk</text>
+      <rect x="546" y="212" width="148" height="40" rx="14" fill="#0D3F78"/>
+      <text x="620" y="228" fill="#FFFFFF" text-anchor="middle">Terpal Bak Truk</text>
+      <text x="620" y="243" fill="#FFFFFF" text-anchor="middle">dan Kapal Batu Bara</text>
     </g>
     <g>
       <line x1="925" y1="202" x2="925" y2="228" stroke="#0D3F78" stroke-width="1.8"/>
@@ -766,7 +768,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           <button data-jump="sprayer">Water Sprayer</button>
           <button data-jump="eco">Eco Strategy</button>
           <button data-jump="dustnet">Dust Net</button>
-          <button data-jump="terpal">Terpal Bak Truk</button>
+          <button data-jump="terpal">Terpal Bak Truk dan Kapal Batu Bara</button>
           <button data-jump="wash">Truck Wash</button>
         </div>
       </div>
@@ -780,7 +782,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
             <input type="range" id="windSlider" min="0" max="25" value="6" step="1" aria-label="Kecepatan angin dalam knot">
             <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="15 kt · batas"></span>
           </div>
-          <p class="slider-reg">Dasar hukum: UU No. 17 Tahun 2008 tentang Pelayaran jo. PP No. 61 Tahun 2009 tentang Kepelabuhanan</p>
+          <p class="slider-reg"><b>DASAR HUKUM</b><span>UU No. 17 Tahun 2008 tentang Pelayaran jo. PP No. 61 Tahun 2009 tentang Kepelabuhanan</span></p>
         </div>
 
         <div class="slider-group">
@@ -789,7 +791,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
             <input type="range" id="pmSlider" min="0" max="100" value="28" step="1" aria-label="Kadar PM10 dalam mikrogram per Nm3">
             <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.75);" data-label="75 · NAB"></span>
           </div>
-          <p class="slider-reg">Acuan: PP No. 22 Tahun 2021 Lampiran VII</p>
+          <p class="slider-reg"><b>ACUAN</b><span>PP No. 22 Tahun 2021 Lampiran VII — baku mutu PM10 udara ambien</span></p>
         </div>
 
         <div class="zone-key" aria-hidden="true">
@@ -901,8 +903,8 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
         <li><span class="fs-n">3</span><span class="fs-t">Penyapuan debu &amp; penyiraman di dermaga</span></li>
         <li><span class="fs-n">4</span><span class="fs-t">Penyiraman jalan</span></li>
         <li><span class="fs-n">5</span><span class="fs-t">Pembersihan truk di carwash</span></li>
-        <li class="exit"><span class="fs-n">6</span><span class="fs-t">Truk keluar pelabuhan</span></li>
-        <li><span class="fs-n">7</span><span class="fs-t">Penyapuan debu di jalan</span></li>
+        <li><span class="fs-n">6</span><span class="fs-t">Penyapuan debu di jalan</span></li>
+        <li class="exit"><span class="fs-n">7</span><span class="fs-t">Truk keluar pelabuhan</span></li>
       </ol>
       <div class="flow-facts">
         <div class="flow-fact"><b>4</b><span>sprayer per tongkang, ditambah 4 spray gun portable di dermaga — interval 1 jam ON/OFF</span></div>
@@ -939,10 +941,10 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     <span class="toggle-row-head">
       <span class="led"></span>
       <span class="mit-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 16 Q12 8 21 16 L21 19 Q12 13 3 19 Z"/></svg></span>
-      <span class="t">Terpal Bak Truk</span>
+      <span class="t">Terpal Bak Truk dan Kapal Batu Bara</span>
       <span class="plus">+</span>
     </span>
-    <span class="toggle-row-detail">Bagian dari Truck Cleaning — setiap truk yang selesai muat batu bara wajib memasang terpal pada bak sebelum keluar dari area pelabuhan.</span>
+    <span class="toggle-row-detail">Terpal wajib dipasang pada bak truk yang selesai muat sebelum keluar dari area pelabuhan, dan juga pada muatan kapal/tongkang batu bara untuk menahan debu terbang.</span>
   </button>
 <button class="toggle-row dustnet" type="button" aria-expanded="false">
     <span class="toggle-row-head">
@@ -1045,28 +1047,6 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       <p class="funnel-caption">Empat lapis batas bersarang dari yang terluas ke yang paling ketat — <span class="mono">Risk Capacity &gt; Risk Tolerance &gt; Risk Appetite &gt; Risk Limit</span>. Ketuk salah satu lapis untuk melompat ke kartunya.</p>
     </div>
 
-    <div class="matrix-block" data-reveal>
-      <div class="matrix-scroll">
-        <table class="matrix">
-          <thead><tr><th colspan="2"></th><th colspan="5">Tingkat Dampak</th></tr></thead>
-          <tbody>
-            <tr><td class="rowlabel">Hampir Pasti Terjadi</td><td class="rowlet">E</td><td class="cell lvl2" data-letter="E" data-impact="1" data-score="7" data-lvl="lvl2" data-marker="" tabindex="0" role="button">7<small>Low–Mod</small></td><td class="cell lvl3" data-letter="E" data-impact="2" data-score="12" data-lvl="lvl3" data-marker="" tabindex="0" role="button">12<small>Moderate</small></td><td class="cell lvl4" data-letter="E" data-impact="3" data-score="17" data-lvl="lvl4" data-marker="" tabindex="0" role="button">17<small>Mod–High</small></td><td class="cell lvl5" data-letter="E" data-impact="4" data-score="22" data-lvl="lvl5" data-marker="" tabindex="0" role="button">22<small>High</small></td><td class="cell lvl5" data-letter="E" data-impact="5" data-score="25" data-lvl="lvl5" data-marker="" tabindex="0" role="button">25<small>High</small></td></tr><tr><td class="rowlabel">Sangat Mungkin Terjadi</td><td class="rowlet">D</td><td class="cell lvl1" data-letter="D" data-impact="1" data-score="4" data-lvl="lvl1" data-marker="" tabindex="0" role="button">4<small>Low</small></td><td class="cell lvl2" data-letter="D" data-impact="2" data-score="9" data-lvl="lvl2" data-marker="" tabindex="0" role="button">9<small>Low–Mod</small></td><td class="cell lvl3" data-letter="D" data-impact="3" data-score="14" data-lvl="lvl3" data-marker="" tabindex="0" role="button">14<small>Moderate</small></td><td class="cell lvl4" data-letter="D" data-impact="4" data-score="19" data-lvl="lvl4" data-marker="" tabindex="0" role="button">19<small>Mod–High</small></td><td class="cell lvl5" data-letter="D" data-impact="5" data-score="24" data-lvl="lvl5" data-marker="" tabindex="0" role="button">24<small>High</small></td></tr><tr><td class="rowlabel">Bisa Terjadi</td><td class="rowlet">C</td><td class="cell lvl1" data-letter="C" data-impact="1" data-score="3" data-lvl="lvl1" data-marker="" tabindex="0" role="button">3<small>Low</small></td><td class="cell lvl2" data-letter="C" data-impact="2" data-score="8" data-lvl="lvl2" data-marker="" tabindex="0" role="button">8<small>Low–Mod</small></td><td class="cell lvl3" data-letter="C" data-impact="3" data-score="13" data-lvl="lvl3" data-marker="" tabindex="0" role="button">13<small>Moderate</small></td><td class="cell lvl4" data-letter="C" data-impact="4" data-score="18" data-lvl="lvl4" data-marker="" tabindex="0" role="button">18<small>Mod–High</small></td><td class="cell lvl5" data-letter="C" data-impact="5" data-score="23" data-lvl="lvl5" data-marker="" tabindex="0" role="button">23<small>High</small></td></tr><tr><td class="rowlabel">Jarang Terjadi</td><td class="rowlet">B</td><td class="cell lvl1" data-letter="B" data-impact="1" data-score="2" data-lvl="lvl1" data-marker="" tabindex="0" role="button">2<small>Low</small></td><td class="cell lvl2" data-letter="B" data-impact="2" data-score="6" data-lvl="lvl2" data-marker="" tabindex="0" role="button">6<small>Low–Mod</small></td><td class="cell lvl3" data-letter="B" data-impact="3" data-score="11" data-lvl="lvl3" data-marker="" tabindex="0" role="button">11<small>Moderate</small></td><td class="cell lvl4" data-letter="B" data-impact="4" data-score="16" data-lvl="lvl4" data-marker="" tabindex="0" role="button">16<small>Mod–High</small></td><td class="cell lvl5 marker" data-letter="B" data-impact="5" data-score="21" data-lvl="lvl5" data-marker="before" tabindex="0" role="button">21<span class="pin">1</span><small>High</small></td></tr><tr><td class="rowlabel">Sangat Jarang Terjadi</td><td class="rowlet">A</td><td class="cell lvl1" data-letter="A" data-impact="1" data-score="1" data-lvl="lvl1" data-marker="" tabindex="0" role="button">1<small>Low</small></td><td class="cell lvl1" data-letter="A" data-impact="2" data-score="5" data-lvl="lvl1" data-marker="" tabindex="0" role="button">5<small>Low</small></td><td class="cell lvl2 marker" data-letter="A" data-impact="3" data-score="10" data-lvl="lvl2" data-marker="after" tabindex="0" role="button">10<span class="pin">2</span><small>Low–Mod</small></td><td class="cell lvl3" data-letter="A" data-impact="4" data-score="15" data-lvl="lvl3" data-marker="" tabindex="0" role="button">15<small>Moderate</small></td><td class="cell lvl5" data-letter="A" data-impact="5" data-score="20" data-lvl="lvl5" data-marker="" tabindex="0" role="button">20<small>High</small></td></tr>
-            <tr><td class="axis-label" colspan="2" style="text-align:right;padding-right:10px;">Tingkat Kemungkinan ↑</td>
-              <td class="impact-head">1<br>Sangat Rendah</td><td class="impact-head">2<br>Rendah</td><td class="impact-head">3<br>Moderat</td><td class="impact-head">4<br>Tinggi</td><td class="impact-head">5<br>Sangat Tinggi</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="matrix-readout" id="matrixReadout">Ketuk salah satu sel matriks untuk melihat rincian skor risikonya. Sel bertanda <span class="pin">1</span> dan <span class="pin">2</span> menunjukkan pergerakan skor akibat mitigasi.</div>
-      <div class="matrix-legend" aria-hidden="true">
-        <span class="lg lvl1">Low <small>skor 1–5</small></span>
-        <span class="lg lvl2">Low to Moderate <small>skor 6–10</small></span>
-        <span class="lg lvl3">Moderate <small>skor 11–15</small></span>
-        <span class="lg lvl4">Moderate to High <small>skor 16–19</small></span>
-        <span class="lg lvl5">High <small>skor 20–25</small></span>
-      </div>
-      <p class="matrix-note">Skor = Tingkat Kemungkinan × Tingkat Dampak. <span class="pin">1</span> <b>Sebelum mitigasi:</b> skor risiko 21 (High) → <span class="pin">2</span> <b>setelah mitigasi terintegrasi:</b> turun ke skor 10 (Low to Moderate).</p>
-    </div>
-
     <div class="risklevels-grid" data-reveal>
       <div class="rl-card rl-cap" id="card-cap">
         <div class="rl-head"><span>Risk Capacity</span><span class="rl-figure">IDR 3.5 M/thn</span></div>
@@ -1117,6 +1097,28 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
         </div>
       </div>
     </div>
+    <div class="matrix-block" data-reveal>
+      <div class="matrix-scroll">
+        <table class="matrix">
+          <thead><tr><th colspan="2"></th><th colspan="5">Tingkat Dampak</th></tr></thead>
+          <tbody>
+            <tr><td class="rowlabel">Hampir Pasti Terjadi</td><td class="rowlet">E</td><td class="cell lvl2" data-letter="E" data-impact="1" data-score="7" data-lvl="lvl2" data-marker="" tabindex="0" role="button">7<small>Low–Mod</small></td><td class="cell lvl3" data-letter="E" data-impact="2" data-score="12" data-lvl="lvl3" data-marker="" tabindex="0" role="button">12<small>Moderate</small></td><td class="cell lvl4" data-letter="E" data-impact="3" data-score="17" data-lvl="lvl4" data-marker="" tabindex="0" role="button">17<small>Mod–High</small></td><td class="cell lvl5" data-letter="E" data-impact="4" data-score="22" data-lvl="lvl5" data-marker="" tabindex="0" role="button">22<small>High</small></td><td class="cell lvl5" data-letter="E" data-impact="5" data-score="25" data-lvl="lvl5" data-marker="" tabindex="0" role="button">25<small>High</small></td></tr><tr><td class="rowlabel">Sangat Mungkin Terjadi</td><td class="rowlet">D</td><td class="cell lvl1" data-letter="D" data-impact="1" data-score="4" data-lvl="lvl1" data-marker="" tabindex="0" role="button">4<small>Low</small></td><td class="cell lvl2" data-letter="D" data-impact="2" data-score="9" data-lvl="lvl2" data-marker="" tabindex="0" role="button">9<small>Low–Mod</small></td><td class="cell lvl3" data-letter="D" data-impact="3" data-score="14" data-lvl="lvl3" data-marker="" tabindex="0" role="button">14<small>Moderate</small></td><td class="cell lvl4" data-letter="D" data-impact="4" data-score="19" data-lvl="lvl4" data-marker="" tabindex="0" role="button">19<small>Mod–High</small></td><td class="cell lvl5" data-letter="D" data-impact="5" data-score="24" data-lvl="lvl5" data-marker="" tabindex="0" role="button">24<small>High</small></td></tr><tr><td class="rowlabel">Bisa Terjadi</td><td class="rowlet">C</td><td class="cell lvl1" data-letter="C" data-impact="1" data-score="3" data-lvl="lvl1" data-marker="" tabindex="0" role="button">3<small>Low</small></td><td class="cell lvl2" data-letter="C" data-impact="2" data-score="8" data-lvl="lvl2" data-marker="" tabindex="0" role="button">8<small>Low–Mod</small></td><td class="cell lvl3" data-letter="C" data-impact="3" data-score="13" data-lvl="lvl3" data-marker="" tabindex="0" role="button">13<small>Moderate</small></td><td class="cell lvl4" data-letter="C" data-impact="4" data-score="18" data-lvl="lvl4" data-marker="" tabindex="0" role="button">18<small>Mod–High</small></td><td class="cell lvl5" data-letter="C" data-impact="5" data-score="23" data-lvl="lvl5" data-marker="" tabindex="0" role="button">23<small>High</small></td></tr><tr><td class="rowlabel">Jarang Terjadi</td><td class="rowlet">B</td><td class="cell lvl1" data-letter="B" data-impact="1" data-score="2" data-lvl="lvl1" data-marker="" tabindex="0" role="button">2<small>Low</small></td><td class="cell lvl2" data-letter="B" data-impact="2" data-score="6" data-lvl="lvl2" data-marker="" tabindex="0" role="button">6<small>Low–Mod</small></td><td class="cell lvl3" data-letter="B" data-impact="3" data-score="11" data-lvl="lvl3" data-marker="" tabindex="0" role="button">11<small>Moderate</small></td><td class="cell lvl4" data-letter="B" data-impact="4" data-score="16" data-lvl="lvl4" data-marker="" tabindex="0" role="button">16<small>Mod–High</small></td><td class="cell lvl5 marker" data-letter="B" data-impact="5" data-score="21" data-lvl="lvl5" data-marker="before" tabindex="0" role="button">21<span class="pin">1</span><small>High</small></td></tr><tr><td class="rowlabel">Sangat Jarang Terjadi</td><td class="rowlet">A</td><td class="cell lvl1" data-letter="A" data-impact="1" data-score="1" data-lvl="lvl1" data-marker="" tabindex="0" role="button">1<small>Low</small></td><td class="cell lvl1" data-letter="A" data-impact="2" data-score="5" data-lvl="lvl1" data-marker="" tabindex="0" role="button">5<small>Low</small></td><td class="cell lvl2 marker" data-letter="A" data-impact="3" data-score="10" data-lvl="lvl2" data-marker="after" tabindex="0" role="button">10<span class="pin">2</span><small>Low–Mod</small></td><td class="cell lvl3" data-letter="A" data-impact="4" data-score="15" data-lvl="lvl3" data-marker="" tabindex="0" role="button">15<small>Moderate</small></td><td class="cell lvl5" data-letter="A" data-impact="5" data-score="20" data-lvl="lvl5" data-marker="" tabindex="0" role="button">20<small>High</small></td></tr>
+            <tr><td class="axis-label" colspan="2" style="text-align:right;padding-right:10px;">Tingkat Kemungkinan ↑</td>
+              <td class="impact-head">1<br>Sangat Rendah</td><td class="impact-head">2<br>Rendah</td><td class="impact-head">3<br>Moderat</td><td class="impact-head">4<br>Tinggi</td><td class="impact-head">5<br>Sangat Tinggi</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="matrix-readout" id="matrixReadout">Ketuk salah satu sel matriks untuk melihat rincian skor risikonya. Sel bertanda <span class="pin">1</span> dan <span class="pin">2</span> menunjukkan pergerakan skor akibat mitigasi.</div>
+      <div class="matrix-legend" aria-hidden="true">
+        <span class="lg lvl1">Low <small>skor 1–5</small></span>
+        <span class="lg lvl2">Low to Moderate <small>skor 6–10</small></span>
+        <span class="lg lvl3">Moderate <small>skor 11–15</small></span>
+        <span class="lg lvl4">Moderate to High <small>skor 16–19</small></span>
+        <span class="lg lvl5">High <small>skor 20–25</small></span>
+      </div>
+      <p class="matrix-note">Skor = Tingkat Kemungkinan × Tingkat Dampak. <span class="pin">1</span> <b>Sebelum mitigasi:</b> skor risiko 21 (High) → <span class="pin">2</span> <b>setelah mitigasi terintegrasi:</b> turun ke skor 10 (Low to Moderate).</p>
+    </div>
+
   </section>
 
   <section id="register">
