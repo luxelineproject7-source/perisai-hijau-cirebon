@@ -223,7 +223,8 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 .slider-track-wrap input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:9px;border-radius:5px;background:rgba(255,255,255,.22);outline-offset:6px;}
 /* the track itself shows the aman / toleransi / lampaui-batas bands */
 #windSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 40%,var(--z-warn) 40% 60%,var(--z-stop) 60% 100%);}
-#pmSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 60%,var(--z-warn) 60% 75%,var(--z-stop) 75% 100%);}
+#pmSlider{background-image:linear-gradient(90deg,var(--z-ok) 0 75%,var(--z-stop) 75% 100%);}
+.slider-reg{font-family:'IBM Plex Mono',monospace;font-size:9.5px;line-height:1.5;color:rgba(255,255,255,.62);margin-top:2px;}
 .zone-key{display:flex;gap:14px;flex-wrap:wrap;margin-top:2px;}
 .zone-key span{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.72);}
 .zone-key i{width:11px;height:7px;border-radius:2px;display:inline-block;}
@@ -463,8 +464,8 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 <div class="wrap">
   <section class="hero" id="beranda" style="padding-top:0;">
     <p class="eyebrow">Pelindo Regional 2 · Cirebon · Manajemen Risiko 2026</p>
-    <h1>Menahan <span class="hl">debu batu bara</span> sebelum menyeberang ke permukiman</h1>
-    <p class="hero-sub">Situs pendamping digital dari poster manajemen risiko dermaga — memuat identifikasi risiko, strategi mitigasi terintegrasi, dan ambang batas operasional yang berlaku di area bongkar muat Pelabuhan Cirebon.</p>
+    <h1>Strategi Pengendalian Risiko <span class="hl">Debu Batu Bara</span> di Pelabuhan Cirebon</h1>
+    <p class="hero-sub">Situs pendamping digital dari poster manajemen risiko yang menggambarkan analisa identifikasi, dampak dan mitigasi risiko atas kegiatan bongkar batu bara di Pelabuhan Cirebon.</p>
     <p class="hero-lede">"Mengendalikan risiko dampak debu batu bara demi keberlanjutan operasional pelabuhan dan stabilitas reputasi perusahaan."</p>
 
     <div class="hero-grid" data-reveal>
@@ -738,6 +739,12 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       <text x="766" y="239" fill="#FFFFFF" text-anchor="middle">Truck Wash</text>
     </g>
     <g>
+      <line x1="620" y1="248" x2="608" y2="326" stroke="#0D3F78" stroke-width="1.8"/>
+      <circle cx="608" cy="326" r="4" fill="#FFFFFF" stroke="#0D3F78" stroke-width="2"/>
+      <rect x="556" y="222" width="128" height="26" rx="13" fill="#0D3F78"/>
+      <text x="620" y="239" fill="#FFFFFF" text-anchor="middle">Terpal Bak Truk</text>
+    </g>
+    <g>
       <line x1="925" y1="202" x2="925" y2="228" stroke="#0D3F78" stroke-width="1.8"/>
       <circle cx="925" cy="228" r="4" fill="#FFFFFF" stroke="#0D3F78" stroke-width="2"/>
       <rect x="879" y="176" width="92" height="26" rx="13" fill="#0D3F78"/>
@@ -759,6 +766,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
           <button data-jump="sprayer">Water Sprayer</button>
           <button data-jump="eco">Eco Strategy</button>
           <button data-jump="dustnet">Dust Net</button>
+          <button data-jump="terpal">Terpal Bak Truk</button>
           <button data-jump="wash">Truck Wash</button>
         </div>
       </div>
@@ -772,15 +780,16 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
             <input type="range" id="windSlider" min="0" max="25" value="6" step="1" aria-label="Kecepatan angin dalam knot">
             <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="15 kt · batas"></span>
           </div>
+          <p class="slider-reg">Dasar hukum: UU No. 17 Tahun 2008 tentang Pelayaran jo. PP No. 61 Tahun 2009 tentang Kepelabuhanan</p>
         </div>
 
         <div class="slider-group">
           <div class="slider-label"><span>Kadar PM10</span><span class="val mono"><span id="pmVal">28</span> µg/Nm³</span></div>
-          <div class="slider-track-wrap has-2row">
+          <div class="slider-track-wrap">
             <input type="range" id="pmSlider" min="0" max="100" value="28" step="1" aria-label="Kadar PM10 dalam mikrogram per Nm3">
-            <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.60);" data-label="60 · toleransi"></span>
-            <span class="threshold-mark row2" style="left:calc(9px + (100% - 18px) * 0.75);" data-label="75 · NAB"></span>
+            <span class="threshold-mark" style="left:calc(9px + (100% - 18px) * 0.75);" data-label="75 · NAB"></span>
           </div>
+          <p class="slider-reg">Acuan: PP No. 22 Tahun 2021 Lampiran VII</p>
         </div>
 
         <div class="zone-key" aria-hidden="true">
@@ -899,7 +908,6 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
         <div class="flow-fact"><b>4</b><span>sprayer per tongkang, ditambah 4 spray gun portable di dermaga — interval 1 jam ON/OFF</span></div>
         <div class="flow-fact"><b>6×</b><span>penyiraman jalan per hari oleh 2 unit mobil tangki air, 08.00–21.00 WIB</span></div>
         <div class="flow-fact"><b>36</b><span>petugas penyapuan (18 Lini I + 18 Lini II), 07.00–15.00 WIB</span></div>
-        <div class="flow-fact"><b>1</b><span>road sweeper mesin kapasitas 3 m³, 4 jam operasional per hari</span></div>
         <div class="flow-fact"><b>62</b><span>jaring dust net di 2 lokasi (±374 m) — disemprot 09.00, 14.00, 21.00 WIB</span></div>
         <div class="flow-fact"><b>2</b><span>operator carwash per shift, dengan 2 pompa portable &amp; 1 kompresor</span></div>
       </div>
@@ -961,7 +969,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       <span class="t">Port Cleaning</span>
       <span class="plus">+</span>
     </span>
-    <span class="toggle-row-detail">Penyiraman jalan pakai 2 unit mobil tangki air, 6× sehari pukul 08.00–21.00 WIB mencakup Lini I & II; disusul penyapuan manual 36 petugas (07.00–15.00 WIB) dan 1 unit road sweeper mesin (kapasitas 3 m³, 4 jam operasional).</span>
+    <span class="toggle-row-detail">Penyiraman jalan pakai 2 unit mobil tangki air, 6× sehari pukul 08.00–21.00 WIB mencakup Lini I & II; disusul penyapuan manual oleh 36 petugas pada pukul 07.00–15.00 WIB.</span>
   </button>
       </div>
       <div class="card lane">
@@ -1331,7 +1339,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 
   // callout tag jump -> flash matching mitigation row
   safe('callout-jump', function(){
-  var jumpMap = {sprayer:0, eco:1, dustnet:3, wash:4};
+  var jumpMap = {sprayer:0, eco:1, terpal:2, dustnet:3, wash:4};
   document.querySelectorAll('.callout-tags button').forEach(function(btn){
     btn.addEventListener('click', function(){
       var rows = document.querySelectorAll('#mitigasi .lane:first-child .toggle-row');
@@ -1426,7 +1434,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     var windStop = wind > 15;
     var pmStop = pm > 75;
     var windCaution = wind > 10 && wind <= 15;
-    var pmCaution = pm > 60 && pm <= 75;
+    // PM10 hanya mengenal satu ambang: baku mutu PP 22/2021 Lampiran VII
 
     var state, msg;
     if(windStop || pmStop){
@@ -1435,11 +1443,10 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
       if(windStop) reasons.push('Anemometer <b>' + wind + ' kt</b> melewati batas <b>15 kt</b> (28 km/jam) \u2192 seluruh bongkar muat dari tongkang via excavator dihentikan otomatis, tanpa menunggu persetujuan manajemen atas.');
       if(pmStop) reasons.push('PM10 <b>' + pm + ' µg/Nm³</b> melampaui baku mutu <b>75 µg/Nm³</b> \u2192 sprayer sisi tongkang menyala maksimal dan ritase mobil tangki digandakan menjadi tiap 1 jam.');
       msg = '<b>Risk Limit tersentuh.</b> ' + reasons.join(' ');
-    } else if(windCaution || pmCaution){
+    } else if(windCaution){
       state = 'siaga';
       var cautions = [];
       if(windCaution) cautions.push('kecepatan angin mendekati batas 15 kt');
-      if(pmCaution) cautions.push('PM10 memasuki zona toleransi (&gt;60 µg/Nm³)');
       msg = 'Siaga — ' + cautions.join(' &amp; ') + '. Masih di dalam Risk Tolerance, belum memicu penghentian. Tindakan: rapatkan interval sprayer dermaga, tambah ritase mobil tangki penyiram, dan pantau anemometer serta sensor PM10 lebih sering sebelum menyentuh batas henti.';
     } else {
       state = 'normal';
@@ -1448,7 +1455,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 
     // each reading is toned by its own threshold, not the combined state
     windVal.parentElement.className = 'val mono ' + (windStop ? 's-stop' : (windCaution ? 's-warn' : 's-ok'));
-    pmVal.parentElement.className   = 'val mono ' + (pmStop   ? 's-stop' : (pmCaution   ? 's-warn' : 's-ok'));
+    pmVal.parentElement.className   = 'val mono ' + (pmStop ? 's-stop' : 's-ok');
 
     setLamp(lampNormal, state === 'normal');
     setLamp(lampSiaga, state === 'siaga');
