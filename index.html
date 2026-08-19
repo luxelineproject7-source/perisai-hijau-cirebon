@@ -141,6 +141,53 @@ html.js-anim [data-reveal].is-visible{opacity:1;transform:translateY(0);}
 
 .scene-wrap{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 34px var(--shadow-strong);overflow:hidden;}
 .scene-wrap svg{display:block;width:100%;height:auto;}
+
+/* wind: streaks drift from the sea toward the settlement, speed follows the slider */
+@keyframes wsDrift{
+  0%{transform:translateX(0);opacity:0;}
+  14%{opacity:var(--ws-op,0);}
+  78%{opacity:var(--ws-op,0);}
+  100%{transform:translateX(600px);opacity:0;}
+}
+.wind-streaks .ws{opacity:0;animation:wsDrift var(--ws-dur,8s) linear infinite;}
+.wind-streaks .ws1{animation-delay:-0.2s;}
+.wind-streaks .ws2{animation-delay:-2.4s;}
+.wind-streaks .ws3{animation-delay:-4.1s;}
+.wind-streaks .ws4{animation-delay:-1.3s;}
+.wind-streaks .ws5{animation-delay:-5.6s;}
+.wind-streaks .ws6{animation-delay:-3.2s;}
+@keyframes needleSway{0%,100%{transform:rotate(-2.6deg);}50%{transform:rotate(2.6deg);}}
+.needle-sway{transform-origin:0px 0px;animation:needleSway var(--nf-dur,4.2s) ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){
+  .wind-streaks{display:none;}
+  .needle-sway{animation:none;}
+}
+
+/* alur penanganan debu — a real operational sequence, so it is numbered */
+.flow-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;box-shadow:0 4px 14px var(--shadow);margin-bottom:20px;}
+.flow-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+.flow-head h3{font-size:14px;text-transform:uppercase;letter-spacing:.03em;color:var(--navy-text);}
+.flow-head span{font-size:10.5px;color:var(--ink-dim);}
+.flow-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:0;counter-reset:step;}
+.flow-steps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:0 6px;}
+.flow-steps li::before{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:var(--line);z-index:0;}
+.flow-steps li:last-child::before{display:none;}
+.fs-n{position:relative;z-index:1;width:27px;height:27px;flex:none;border-radius:50%;background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.flow-steps li.exit .fs-n{background:var(--green);}
+.fs-t{font-size:11.5px;line-height:1.4;color:var(--ink);}
+@media (max-width:860px){
+  .flow-steps{grid-template-columns:1fr;gap:4px;}
+  .flow-steps li{flex-direction:row;text-align:left;align-items:flex-start;gap:12px;padding:5px 0;}
+  .flow-steps li::before{top:27px;left:13px;width:2px;height:100%;}
+  .fs-t{padding-top:4px;}
+}
+.flow-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);}
+@media (max-width:760px){.flow-facts{grid-template-columns:1fr 1fr;}}
+@media (max-width:430px){.flow-facts{grid-template-columns:1fr;}}
+.flow-fact{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:11px 13px;display:flex;gap:11px;align-items:baseline;}
+.flow-fact b{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:700;color:var(--navy-text);flex:none;line-height:1.1;}
+.flow-fact span{font-size:11.5px;color:var(--ink-dim);line-height:1.45;}
+.flow-src{margin-top:14px;font-size:11px;color:var(--ink-dim);font-style:italic;}
 @media (max-width:760px){.scene-labels{display:none;}}
 .status-badge{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:8px;background:color-mix(in srgb, var(--panel) 88%, transparent);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:30px;padding:7px 14px 7px 10px;box-shadow:0 6px 16px var(--shadow-strong);}
 .status-badge .lamp{width:11px;height:11px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent);transition:background .2s ease,box-shadow .2s ease;}
@@ -643,10 +690,21 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     <circle cx="0" cy="0" r="27" fill="#FFFFFF" fill-opacity="0.72" stroke="#0D3F78" stroke-width="1.6"/>
     <text x="0" y="-34" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#0D3F78" font-weight="700" letter-spacing="0.6">ANGIN</text>
     <g stroke="#0D3F78" stroke-width="1.4" opacity="0.5"><path d="M0,-27 V-22 M0,27 V22 M-27,0 H-22 M27,0 H22"/></g>
-    <g id="windNeedle" style="transform-origin:0px 0px;transition:transform .15s ease;">
-      <path d="M0,-19 L5,6 L0,2 L-5,6 Z" fill="#DE0603"/>
+    <g id="windNeedle" style="transform-origin:0px 0px;transition:transform .25s ease;">
+      <g class="needle-sway">
+        <path d="M0,-19 L5,6 L0,2 L-5,6 Z" fill="#DE0603"/>
+      </g>
     </g>
     <circle cx="0" cy="0" r="3" fill="#0D3F78"/>
+  </g>
+
+  <g id="windStreaks" class="wind-streaks" fill="none" stroke="#FFFFFF" stroke-linecap="round" aria-hidden="true">
+    <path class="ws ws1" d="M112,102 q48,-8 96,0" stroke-width="3.4"/>
+    <path class="ws ws2" d="M244,148 q62,-9 124,0" stroke-width="3"/>
+    <path class="ws ws3" d="M146,198 q42,-7 84,0" stroke-width="2.6"/>
+    <path class="ws ws4" d="M318,236 q56,-8 112,0" stroke-width="2.8"/>
+    <path class="ws ws5" d="M196,266 q46,-7 92,0" stroke-width="2.3"/>
+    <path class="ws ws6" d="M414,126 q52,-8 104,0" stroke-width="3"/>
   </g>
 
   <g class="scene-labels" font-family="'Work Sans',sans-serif" font-size="13" font-weight="600">
@@ -799,6 +857,32 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
 
   <section id="mitigasi">
     <div class="sec-bar" data-reveal><h2>3. Strategi Mitigasi Risiko Terintegrasi</h2><span class="tag">Ketuk untuk detail</span></div>
+
+    <div class="flow-card" data-reveal>
+      <div class="flow-head">
+        <h3>Alur Penanganan Debu di Lapangan</h3>
+        <span class="mono">Rantai kendali dari tongkang sampai truk keluar gerbang</span>
+      </div>
+      <ol class="flow-steps">
+        <li><span class="fs-n">1</span><span class="fs-t">Kegiatan bongkar batu bara</span></li>
+        <li><span class="fs-n">2</span><span class="fs-t">Penutupan bak dengan terpal</span></li>
+        <li><span class="fs-n">3</span><span class="fs-t">Penyapuan debu &amp; penyiraman di dermaga</span></li>
+        <li><span class="fs-n">4</span><span class="fs-t">Penyiraman jalan</span></li>
+        <li><span class="fs-n">5</span><span class="fs-t">Pembersihan truk di carwash</span></li>
+        <li class="exit"><span class="fs-n">6</span><span class="fs-t">Truk keluar pelabuhan</span></li>
+        <li><span class="fs-n">7</span><span class="fs-t">Penyapuan debu di jalan</span></li>
+      </ol>
+      <div class="flow-facts">
+        <div class="flow-fact"><b>4</b><span>sprayer per tongkang, ditambah 4 spray gun portable di dermaga — interval 1 jam ON/OFF</span></div>
+        <div class="flow-fact"><b>6×</b><span>penyiraman jalan per hari oleh 2 unit mobil tangki air, 08.00–21.00 WIB</span></div>
+        <div class="flow-fact"><b>36</b><span>petugas penyapuan (18 Lini I + 18 Lini II), 07.00–15.00 WIB</span></div>
+        <div class="flow-fact"><b>1</b><span>road sweeper mesin kapasitas 3 m³, 4 jam operasional per hari</span></div>
+        <div class="flow-fact"><b>62</b><span>jaring dust net di 2 lokasi (±374 m) — disemprot 09.00, 14.00, 21.00 WIB</span></div>
+        <div class="flow-fact"><b>2</b><span>operator carwash per shift, dengan 2 pompa portable &amp; 1 kompresor</span></div>
+      </div>
+      <p class="flow-src">Parameter operasional mengacu pada paparan HSSE Pelabuhan Cirebon (Juli 2022) — perlu diperbarui bila konfigurasi lapangan 2026 berubah.</p>
+    </div>
+
     <div class="threecol" data-reveal>
       <div class="card lane">
         <h3 class="card-title"><span class="num">A</span>Rekayasa Teknik</h3>
@@ -1290,6 +1374,7 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
   var statusText = document.getElementById('statusText');
   var heatCircle = document.getElementById('heatCircle');
   var windNeedle = document.getElementById('windNeedle');
+  var windStreaks = document.getElementById('windStreaks');
 
   function setLamp(el, on){ el.classList.toggle('on', on); }
 
@@ -1303,6 +1388,12 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     var deg = -55 + (wind/25)*110;
     windNeedle.style.transform = 'rotate(' + deg + 'deg)';
     windNeedle.querySelector('path').setAttribute('fill', wind > 15 ? '#DE0603' : '#0D3F78');
+
+    // streaks and needle sway both track wind speed; both vanish at dead calm
+    var wn = wind / 25;
+    windStreaks.style.setProperty('--ws-op', wind < 2 ? '0' : (0.2 + wn * 0.48).toFixed(3));
+    windStreaks.style.setProperty('--ws-dur', (8.4 - wn * 6).toFixed(2) + 's');
+    windNeedle.style.setProperty('--nf-dur', (4.2 - wn * 3.1).toFixed(2) + 's');
 
     // heat glow reacts to pm10
     var r = 58 + (pm/100)*68;
@@ -1318,18 +1409,18 @@ footer{padding:30px 0 44px;border-top:1px solid var(--line);margin-top:10px;}
     if(windStop || pmStop){
       state = 'stop';
       var reasons = [];
-      if(windStop) reasons.push('Angin <b>' + wind + ' kt</b> melebihi batas <b>15 kt</b> \u2192 seluruh bongkar muat dari tongkang via excavator dihentikan otomatis.');
-      if(pmStop) reasons.push('PM10 <b>' + pm + ' µg/Nm³</b> melampaui baku mutu <b>75 µg/Nm³</b> \u2192 sprayer menyala maksimal, ritase water truck digandakan jadi tiap 1 jam.');
-      msg = reasons.join(' ');
+      if(windStop) reasons.push('Anemometer <b>' + wind + ' kt</b> melewati batas <b>15 kt</b> (28 km/jam) \u2192 seluruh bongkar muat dari tongkang via excavator dihentikan otomatis, tanpa menunggu persetujuan manajemen atas.');
+      if(pmStop) reasons.push('PM10 <b>' + pm + ' µg/Nm³</b> melampaui baku mutu <b>75 µg/Nm³</b> \u2192 sprayer sisi tongkang menyala maksimal dan ritase mobil tangki digandakan menjadi tiap 1 jam.');
+      msg = '<b>Risk Limit tersentuh.</b> ' + reasons.join(' ');
     } else if(windCaution || pmCaution){
       state = 'siaga';
       var cautions = [];
       if(windCaution) cautions.push('kecepatan angin mendekati batas 15 kt');
       if(pmCaution) cautions.push('PM10 memasuki zona toleransi (&gt;60 µg/Nm³)');
-      msg = 'Siaga — ' + cautions.join(' &amp; ') + '. Tingkatkan frekuensi penyiraman &amp; pantau instrumen secara berkala.';
+      msg = 'Siaga — ' + cautions.join(' &amp; ') + '. Masih di dalam Risk Tolerance, belum memicu penghentian. Tindakan: rapatkan interval sprayer dermaga, tambah ritase mobil tangki penyiram, dan pantau anemometer serta sensor PM10 lebih sering sebelum menyentuh batas henti.';
     } else {
       state = 'normal';
-      msg = 'Kondisi dalam batas aman. Operasional bongkar muat berjalan normal.';
+      msg = 'Kondisi dalam batas aman — anemometer <b>' + wind + ' kt</b> dan PM10 <b>' + pm + ' µg/Nm³</b> berada di bawah ambang. Bongkar muat berjalan normal; sprayer tongkang, penyiraman jalan 6× sehari, dan penyapuan rutin tetap dijalankan sebagai kendali dasar.';
     }
 
     setLamp(lampNormal, state === 'normal');
